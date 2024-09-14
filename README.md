@@ -8,7 +8,7 @@ await client.connect();
 await client.db("admin").command({ ping: 1 });
 ```
 2. create vercel.json file for configuring server
-```
+```javascript
 {
   "version": 2,
   "builds": [
@@ -27,7 +27,7 @@ await client.db("admin").command({ ping: 1 });
 }
 ```
 3. Add Your production domains to your cors configuration
-```
+```javascript
 //Must remove "/" from your production URL
 app.use(
   cors({
@@ -41,7 +41,7 @@ app.use(
 );
 ```
 4. Let's create a cookie options for both production and local server
-```
+```javascript
 const cookieOptions = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
@@ -51,7 +51,7 @@ const cookieOptions = {
 // in development server secure will false .  in production secure will be true
 ```
 ### now we can use this object for cookie option to modify cookies
-```
+```javascript
 //creating Token
 app.post("/jwt", logger, async (req, res) => {
   const user = req.body;
@@ -71,7 +71,7 @@ app.post("/logout", async (req, res) => {
 });
 ```
 5. Deploy to Vercel
-```
+```javascript
 vercel
 vercel --prod
 - After completed the deployment . click on inspect link and copy the production domain
